@@ -259,9 +259,9 @@ function usage() {
 	 $name --neutron
 	
 	Defaults:
-	 --first=first+50 --last=last-2 
+	 --first=first+3 --last=last-2 
 	 --interface=last-1 --gateway=first+1
-	 --dns="8.8.8.8 8.8.4.4"
+	 --dns="10.2.255.66 10.0.1.30"
 
 	Relative IP Address:
 	 Addresses are relative to scope and calculated using simple +/- arithmetic
@@ -270,7 +270,6 @@ function usage() {
 
 	Caveats:
 	 Potentially not every invalid parameter mutation will be caught! Be careful!
-	 Prefix length must be <= 26.
 	
 	EOF
 	exit 1
@@ -295,8 +294,8 @@ if ! [ -f /home/virl/.bashrc ]; then
 fi
 
 # defaults
-NAMESERVERS="8.8.8.8 8.8.4.4"
-DHCP_FIRST="first+50"
+NAMESERVERS="10.2.255.66 10.0.1.30"
+DHCP_FIRST="first+3"
 DHCP_LAST="last-2"
 IFACE_IP="last-1"
 GATEWAY="first+1"
@@ -376,7 +375,7 @@ if [ -z "$PREFIX" -o -z "$IFACE_NET" -o -z "$IFACE_MASK" -o -z "$IFACE_MASKLEN" 
 fi
 
 # need a little space for DHCP scope
-if [ $IFACE_MASKLEN -gt 26 ]; then
+if [ $IFACE_MASKLEN -gt 30 ]; then
 	usage
 fi
 
